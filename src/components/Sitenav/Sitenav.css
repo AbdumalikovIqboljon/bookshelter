@@ -1,3 +1,7 @@
+.sitenav {
+    display: flex;
+    align-items: center;
+}
 .sitenav-link {
     display: inline-block;
 }
