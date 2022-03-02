@@ -3,7 +3,7 @@ import "./LoginForm.css";
 import { Link } from "react-router-dom";
 export default function LoginForm() {
   return (
-    <div>
+    <div className="login-form">
       <Link className="login-logo-link" exact to="/">
         <svg
           className="login-logo"
@@ -28,6 +28,76 @@ export default function LoginForm() {
             fill="white"
           />
         </svg>
+      </Link>
+
+      <label htmlFor="username"></label>
+      <svg
+        className="user-icon"
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M14.6667 15.5V13.8333C14.6667 12.9493 14.3155 12.1014 13.6904 11.4763C13.0653 10.8512 12.2174 10.5 11.3334 10.5H4.66671C3.78265 10.5 2.93481 10.8512 2.30968 11.4763C1.68456 12.1014 1.33337 12.9493 1.33337 13.8333V15.5"
+          stroke="white"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M7.99996 7.16667C9.84091 7.16667 11.3333 5.67428 11.3333 3.83333C11.3333 1.99238 9.84091 0.5 7.99996 0.5C6.15901 0.5 4.66663 1.99238 4.66663 3.83333C4.66663 5.67428 6.15901 7.16667 7.99996 7.16667Z"
+          stroke="white"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+
+      <input
+        className="username-input"
+        type="name"
+        name="username"
+        id="username"
+        placeholder="Username"
+        required
+      />
+
+      <label htmlFor="password"></label>
+      <svg
+        className="lock-icon"
+        width="16"
+        height="18"
+        viewBox="0 0 16 18"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M13.8333 8.16667H2.16667C1.24619 8.16667 0.5 8.91286 0.5 9.83334V15.6667C0.5 16.5871 1.24619 17.3333 2.16667 17.3333H13.8333C14.7538 17.3333 15.5 16.5871 15.5 15.6667V9.83334C15.5 8.91286 14.7538 8.16667 13.8333 8.16667Z"
+          stroke="white"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M3.83337 8.16667V4.83334C3.83337 3.72827 4.27236 2.66846 5.05376 1.88706C5.83516 1.10566 6.89497 0.666672 8.00004 0.666672C9.10511 0.666672 10.1649 1.10566 10.9463 1.88706C11.7277 2.66846 12.1667 3.72827 12.1667 4.83334V8.16667"
+          stroke="white"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      <input
+        className="password-input"
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Password"
+        required
+      />
+
+      <button className="login-btn" type="submit">
+        Login
+      </button>
+      <Link className="forgot-password" to="#">
+        Forgot password?
       </Link>
     </div>
   );

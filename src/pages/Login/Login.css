@@ -1,4 +1,30 @@
+@font-face {
+    font-family: 'Rubik';
+    src: url('../../../assets/webfonts/Rubik-Medium.woff2') format('woff2'),
+        url('../../../assets/webfonts/Rubik-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Rubik';
+    src: url('../../../assets/webfonts/Rubik-Regular.woff2') format('woff2'),
+        url('../../../assets/webfonts/Rubik-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Rubik';
+    src: url('../../../assets/webfonts/Rubik-Light.woff2') format('woff2'),
+        url('../../../assets/webfonts/Rubik-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
 body {
+    font-family: 'Rubik', 'Arial', sans-serif;
     background-image: url('../../../assets/images/login-bg.png');
 }
 .login-page {
