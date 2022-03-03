@@ -1,12 +1,20 @@
 import React from 'react';
-import HomePage from '../src/pages/HomePage/HomePage';
-import Login from '../src/pages/Login/Login';
+import HomePage from './pages/HomePage/HomePage';
+import Login from './pages/Login/Login';
 
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 function App() {
   return (
-    <div className="container">
-      <Login />
-    </div>
+    <Router>
+      <Routes>
+        <Route exact path='/'>
+          <HomePage />
+        </Route>
+        <Route path='/login'>
+          <Login />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 

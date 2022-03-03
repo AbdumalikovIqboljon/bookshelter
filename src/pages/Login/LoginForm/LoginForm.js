@@ -60,6 +60,7 @@ export default function LoginForm() {
           id="username"
           placeholder="Username"
           aria-label="Your username"
+          autoComplete="off"
           required
         />
       </label>

@@ -26,6 +26,8 @@
 body {
     font-family: 'Rubik', 'Arial', sans-serif;
     background-image: url('../../../assets/images/login-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .login-page {
     display: flex;
