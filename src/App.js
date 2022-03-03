@@ -1,18 +1,16 @@
 import React from 'react';
-import HomePage from './pages/HomePage/HomePage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login/Login';
+import Error from './components/Error/Error';
+import Homepage from './pages/HomePage/HomePage';
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path='/'>
-          <HomePage />
-        </Route>
-        <Route path='/login'>
-          <Login />
-        </Route>
+        <Route exact path='/' element={<Homepage/>} />
+        <Route path='/login' element={<Login/>} />
+        <Route path='/error' element={<Error/>} />
       </Routes>
     </Router>
   );

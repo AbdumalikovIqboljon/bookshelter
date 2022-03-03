@@ -1,10 +1,30 @@
 import React from "react";
-import "./LoginForm.css";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+import "./LoginForm.css";
+
 export default function LoginForm() {
+
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [disabled, setDisabled] = useState(true);
+
+  const onSubmit = e => {
+    e.preventDefault();
+    
+  }
+  
+  useEffect(() => {
+    setDisabled(!(username.length > 4 && password.length >= 8))
+  }, [
+    username,
+    password,
+  ])
+
   return (
-    <div className="login-form">
-      <Link className="login-logo-link" exact to="/">
+    <form className="login-form">
+      <Link className="login-logo-link" to="/">
         <svg
           className="login-logo"
           width="228"
@@ -61,6 +81,7 @@ export default function LoginForm() {
           placeholder="Username"
           aria-label="Your username"
           autoComplete="off"
+          onChange={e => setUsername(e.target.value)}
           required
         />
       </label>
@@ -94,16 +115,17 @@ export default function LoginForm() {
           id="password"
           placeholder="Password"
           aria-label="Your password"
+          onChange={e => setPassword(e.target.value)}
           required
         />
       </label>
 
-      <button className="login-btn" type="submit">
+      <button className="login-btn" disabled={disabled} type="submit">
         Login
       </button>
       <Link className="forgot-password" to="#">
         Forgot password?
       </Link>
-    </div>
+    </form>
   );
 }

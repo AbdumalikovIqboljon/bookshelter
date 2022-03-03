@@ -59,9 +59,11 @@ input:autofill {
     cursor: pointer;
     border-radius: 5px;
     border: none;
-    background-color: #fff;
     font-weight: 500;
     margin-bottom: 11px;
+}
+.login-btn:disabled {
+    color: #fff;
 }
 .forgot-password {
     color: #fff;
