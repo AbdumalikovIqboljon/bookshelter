@@ -5,9 +5,22 @@ import { useGlobalContext } from '../../contexts/AppContext';
 export default function SearchInput() {
 
   const { setSearchTerm } = useGlobalContext();
+  const searchValue = React.useRef('');
+
+  React.useEffect(() => {
+    searchValue.current.focus()
+  },[])
+
+  const searchBook = () => {
+    setSearchTerm(searchValue.current.value)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label htmlFor="books"></label>
       <svg
         className="form-search-icon"
@@ -37,6 +50,8 @@ export default function SearchInput() {
         id="books"
         name="books"
         placeholder="Search books"
+        ref={searchValue}
+        onChange={searchBook}
         required
       />
     </form>
