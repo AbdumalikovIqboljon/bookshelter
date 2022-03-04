@@ -1,9 +1,13 @@
 import React from "react";
 import "./SearchInput.css";
+import { useGlobalContext } from '../../contexts/AppContext';
 
 export default function SearchInput() {
+
+  const { setSearchTerm } = useGlobalContext();
+
   return (
-    <div>
+    <form>
       <label htmlFor="books"></label>
       <svg
         className="form-search-icon"
@@ -35,6 +39,6 @@ export default function SearchInput() {
         placeholder="Search books"
         required
       />
-    </div>
+    </form>
   );
 }
