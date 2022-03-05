@@ -1,9 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-// import App from '../firebase';
 
-// export function useApp() {
-//   return useContext(AppContext)
-// }
 
 const url = 'https://www.googleapis.com/books/v1/volumes?q=python';
 const AppContext = React.createContext();
@@ -66,26 +62,6 @@ const AppProvider = ({ children }) => {
     fetchBooks();
   },[searchTerm])
 
-
-
-  // const [currentUser, setCurrentUser] = useState();
-
-  // function signup(username, password) {
-  //    return App.createUserWithUsernameAndPassword(username, password)
-  // }
-
-  // useEffect(() => {
-  //   const unsubscribe = App.onAppStateChanged(user => {
-  //     setCurrentUser(user)
-  //   })
-
-  //   return unsubscribe
-  // }, [])
-
-  // const value = {
-  //   currentUser,
-  //   signup
-  // }
 
   return(
     <AppContext.Provider value={{
