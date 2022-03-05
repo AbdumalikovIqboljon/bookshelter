@@ -15,6 +15,15 @@ const AppProvider = ({ children }) => {
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('a');
 
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const openSidebar = () => {
+    setIsSidebarOpen(true)
+  }
+  const closeSidebar = () => {
+    setIsSidebarOpen(false)
+  }
+
   const fetchBooks = async () => {
     setLoading(true);
     try {
@@ -82,7 +91,10 @@ const AppProvider = ({ children }) => {
     <AppContext.Provider value={{
       loading,
       books,
-      setSearchTerm
+      setSearchTerm,
+      isSidebarOpen,
+      openSidebar,
+      closeSidebar,
     }}>
       {children}
     </AppContext.Provider>

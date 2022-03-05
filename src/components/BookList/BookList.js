@@ -7,7 +7,6 @@ import Loading from '../Loading/Loading';
 export default function BookList() {
 
     const { books, loading } = useGlobalContext();
-    console.log(books)
     if(loading) {
         return <Loading/>
     }

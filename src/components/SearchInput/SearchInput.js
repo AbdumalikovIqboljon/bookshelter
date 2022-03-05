@@ -16,7 +16,7 @@ export default function SearchInput() {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
   }
 
   return (
