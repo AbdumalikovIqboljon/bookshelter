@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+import { FaBars } from 'react-icons/fa';
 import { useGlobalContext } from "../../contexts/AppContext";
 import "./Book.css";
 

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 // import App from '../firebase';
 
 // export function useApp() {
@@ -6,7 +6,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 // }
 
 const url = 'https://www.googleapis.com/books/v1/volumes?q=python';
-const AppContext = createContext();
+const AppContext = React.createContext();
 
 
 
@@ -18,11 +18,11 @@ const AppProvider = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const openSidebar = () => {
-    setIsSidebarOpen(true)
-  }
+    setIsSidebarOpen(true);
+  };
   const closeSidebar = () => {
-    setIsSidebarOpen(false)
-  }
+    setIsSidebarOpen(false);
+  };
 
   const fetchBooks = async () => {
     setLoading(true);
