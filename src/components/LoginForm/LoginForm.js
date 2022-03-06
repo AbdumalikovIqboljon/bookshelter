@@ -6,28 +6,27 @@ import { useAuth } from "../../contexts/AuthContext";
 import "./LoginForm.css";
 
 export default function LoginForm() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [disabled, setDisabled] = useState(true);
 
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login,signup } = useAuth();
+  const { login } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
-
-      
-
     try {
-    
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
+      const data = await login(emailRef.current.value, passwordRef.current.value);
+      if(data){
+        navigate("/")
+      }
     } catch {
-      setError("Failed to log in");
+      navigate("/signup")
     }
     setLoading(false);
   }
@@ -35,10 +34,10 @@ export default function LoginForm() {
 
   useEffect(() => {
     function fetchData() {
-      setDisabled(!(username.length > 4 && password.length >= 8));
+      setDisabled(!(email.length > 4 && password.length >= 8));
     }
     fetchData();
-  }, [username, password]);
+  }, [email, password]);
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>
@@ -68,7 +67,7 @@ export default function LoginForm() {
         </svg>
       </Link>
 
-      <label htmlFor="username">
+      <label htmlFor="email">
         <svg
           className="user-icon"
           width="16"
@@ -92,14 +91,14 @@ export default function LoginForm() {
         </svg>
 
         <input
-          className="username-input"
-          type="name"
-          name="username"
-          id="username"
-          placeholder="Username"
-          aria-label="Your username"
+          className="email-input"
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Email"
+          aria-label="Your email"
           autoComplete="off"
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
           ref={emailRef}
           required
         />
@@ -144,7 +143,7 @@ export default function LoginForm() {
         className="login-btn"
         disabled={disabled}
         type="button"
-        onClick={() => navigate('/')}
+        onClick={handleSubmit}
       >
         Login
       </button>
