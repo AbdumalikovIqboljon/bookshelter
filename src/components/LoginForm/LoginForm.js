@@ -6,14 +6,13 @@ import { useAuth } from "../../contexts/AuthContext";
 import "./LoginForm.css";
 
 export default function LoginForm() {
-
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [disabled, setDisabled] = useState(true);
 
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = useAuth();
+  const { login,signup } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -21,32 +20,28 @@ export default function LoginForm() {
   async function handleSubmit(e) {
     e.preventDefault();
 
+      
 
     try {
-      setError("")
-      setLoading(true)
+    
+      setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-      
     } catch {
       setError("Failed to log in");
     }
     setLoading(false);
   }
 
-  const onSubmit = e => {
-    e.preventDefault();
-    
-  }
-  
+
   useEffect(() => {
-    setDisabled(!(username.length > 4 && password.length >= 8))
-  }, [
-    username,
-    password,
-  ])
+    function fetchData() {
+      setDisabled(!(username.length > 4 && password.length >= 8));
+    }
+    fetchData();
+  }, [username, password]);
 
   return (
-    <form className="login-form" onSubmit={() => navigate('/')}>
+    <form className="login-form" onSubmit={handleSubmit}>
       <Link className="login-logo-link" to="/">
         <svg
           className="login-logo"
@@ -104,7 +99,8 @@ export default function LoginForm() {
           placeholder="Username"
           aria-label="Your username"
           autoComplete="off"
-          onChange={e => setUsername(e.target.value)}
+          onChange={(e) => setUsername(e.target.value)}
+          ref={emailRef}
           required
         />
       </label>
@@ -138,17 +134,25 @@ export default function LoginForm() {
           id="password"
           placeholder="Password"
           aria-label="Your password"
-          onChange={e => setPassword(e.target.value)}
+          ref={passwordRef}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
       </label>
 
-      <button className="login-btn" disabled={disabled} type="button" onSubmit={onSubmit}>
+      <button
+        className="login-btn"
+        disabled={disabled}
+        type="button"
+        onClick={() => navigate('/')}
+      >
         Login
       </button>
+      <Link className="no-account" to="/signup">Don't have an account?</Link>
       <Link className="forgot-password" to="#">
         Forgot password?
       </Link>
+      
     </form>
   );
 }

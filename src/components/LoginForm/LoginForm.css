@@ -73,3 +73,8 @@ input:autofill {
 .forgot-password:hover {
     text-decoration: underline;
 }
+.no-account {
+    color: #fff;
+    align-self: end;
+    margin-bottom: 20px;
+}

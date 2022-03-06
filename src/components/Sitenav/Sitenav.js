@@ -10,16 +10,16 @@ export default function Sitenav() {
   const navigate = useNavigate();
 
   async function handleLogout(event) {
-    event.preventDefault();
-    setError('');
+    // event.preventDefault();
 
     try {
-      await logout()
+      console.log(123)
       navigate('/login')
+      const data = await logout("happy@gmail.com", '1111111')
+      console.log(data)
       
     } catch {
       setError('Failed to log out')
-      console.log(error)  
     }
     
   }

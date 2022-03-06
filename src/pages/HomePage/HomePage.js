@@ -5,10 +5,13 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import './HomePage.css';
 const Homepage = () => {
     return (
-        <div className='container'>
-            <Header />
-            <BookList/>
-            <Sidebar/>
+        <div className='home-page'>
+            <div className="container">
+                
+                <Header />
+                <BookList/>
+                <Sidebar/>
+            </div>
         </div>
     );
 }

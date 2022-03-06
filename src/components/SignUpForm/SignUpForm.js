@@ -8,7 +8,7 @@ export default function SignUpForm() {
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
   const { signup } = useAuth();
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -18,12 +18,13 @@ export default function SignUpForm() {
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
     }
+    
 
     try {
-      setError("")
       setLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value);
-      navigate('/login', { replace: true })
+      console.log(emailRef.current.value, passwordRef.current.value)
+      navigate('/login')
     } catch {
       setError("Failed to create an account");
     }
@@ -96,7 +97,7 @@ export default function SignUpForm() {
               aria-label="Your email"
               autoComplete="off"
               ref={emailRef}
-              required
+              // required
             />
           </label>
 
@@ -130,7 +131,7 @@ export default function SignUpForm() {
               placeholder="Password"
               aria-label="Your password"
               ref={passwordRef}
-              required
+              // required
             />
           </label>
 
@@ -164,12 +165,12 @@ export default function SignUpForm() {
               placeholder="Confirm password"
               aria-label="Confirm password"
               ref={passwordConfirmRef}
-              required
+              // required
             />
           </label>
 
           {error && console.log(error)}
-          <button className="sign-up-btn" disabled={loading} type="button">
+          <button className="sign-up-btn" disabled={loading} type="submit">
             Sign Up
           </button>
           <p className="sign-up-text">

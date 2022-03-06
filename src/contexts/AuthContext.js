@@ -21,7 +21,7 @@ export default function AuthProvider({ children }) {
     }
 
     function logout(email, password) {
-        return auth.logOut();
+        return auth.logOut(email, password);
     }
 
     useEffect(() => {
