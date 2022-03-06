@@ -9,7 +9,7 @@
     display: inline-block;
     margin-bottom: 50px;
 }
-.username-input {
+.email-input {
     margin-bottom: 20px;
 }
 .password-input {
@@ -21,7 +21,7 @@
 label {
     position: relative;
 }
-.username-input, .password-input, .password-confirm-input {
+.email-input, .password-input, .password-confirm-input {
     width: 300px;
     max-width: 100%;
     font-size: 14px;

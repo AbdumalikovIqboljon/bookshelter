@@ -1,33 +1,35 @@
 import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import "./SignUpForm.css";
-import Alert from '../../components/Alert/Alert';
 
 export default function SignUpForm() {
-  const usernameRef = useRef();
+  const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
   const { signup } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  async function handleSubmit(e) {
-    e.preventDefault();
 
+  async function handleSubmit(event) {
+    event.preventDefault();
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return "Passwords do not match";
+      return setError("Passwords do not match");
     }
 
     try {
-      setError("");
-      setLoading(true);
-      await signup(usernameRef.current.value, passwordRef.current.value);
-    } catch (error) {
+      setError("")
+      setLoading(true)
+      await signup(emailRef.current.value, passwordRef.current.value);
+      navigate('/login', { replace: true })
+    } catch {
       setError("Failed to create an account");
     }
     setLoading(false);
   }
+  
   return (
         <form className="sign-up-form" onSubmit={handleSubmit}>
           <Link className="sign-up-logo-link" to="/">
@@ -62,7 +64,7 @@ export default function SignUpForm() {
             </svg>
           </Link>
 
-          <label htmlFor="username">
+          <label htmlFor="email">
             <svg
               className="user-icon"
               width="16"
@@ -86,14 +88,14 @@ export default function SignUpForm() {
             </svg>
 
             <input
-              className="username-input"
-              type="name"
-              name="username"
-              id="username"
-              placeholder="Username"
-              aria-label="Your username"
+              className="email-input"
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email"
+              aria-label="Your email"
               autoComplete="off"
-              ref={usernameRef}
+              ref={emailRef}
               required
             />
           </label>
@@ -132,7 +134,7 @@ export default function SignUpForm() {
             />
           </label>
 
-          <label htmlFor="password">
+          <label htmlFor="confirm-password">
             <svg
               className="lock-icon"
               width="16"
@@ -157,8 +159,8 @@ export default function SignUpForm() {
             <input
               className="password-confirm-input"
               type="password"
-              name="password"
-              id="password"
+              name="confirm-password"
+              id="confirm-password"
               placeholder="Confirm password"
               aria-label="Confirm password"
               ref={passwordConfirmRef}
@@ -166,16 +168,17 @@ export default function SignUpForm() {
             />
           </label>
 
-          {error && <Alert />}
-          <button className="sign-up-btn" disabled={loading} type="submit">
+          {error && console.log(error)}
+          <button className="sign-up-btn" disabled={loading} type="button">
             Sign Up
           </button>
           <p className="sign-up-text">
-            Already a user?{" "}
+            Already a user?
             <Link className="link-to-login" to={"/login"}>
               Login
             </Link>
           </p>
         </form>
+        
   );
 }

@@ -25,8 +25,8 @@ function App() {
     <Provider>
       <Routes>
         <Route exact path='/' element={<Homepage/>} />
-          <Route path='/login' element={<Login/>} />
-          <Route path='/signup' element={<SignUp/>} />
+        <Route path='/login' element={<Login/>} />
+        <Route path='/signup' element={<SignUp/>} />
         <Route path='/error' element={<Error/>} />
         <Route path='/book/:id' element={<Book/>} />
       </Routes>

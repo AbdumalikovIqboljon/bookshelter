@@ -1,7 +1,7 @@
-import React from 'react'
-import { error } from '../SignUpForm/SignUpForm';
+import React from 'react';
+import './Alert.css';
 export default function Alert() {
   return (
-    <div>{error}</div>
+    <div className='error'>Passwords do no match</div>
   )
 }

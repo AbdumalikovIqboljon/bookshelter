@@ -1,9 +1,30 @@
-import React from "react";
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
 import './Sitenav.css';
 import SearchInput from '../SearchInput/SearchInput';
-
+import { useAuth } from "../../contexts/AuthContext";
 export default function Sitenav() {
+
+  const [error, setError] = useState('');
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  async function handleLogout(event) {
+    event.preventDefault();
+    setError('');
+
+    try {
+      await logout()
+      navigate('/login')
+      
+    } catch {
+      setError('Failed to log out')
+      console.log(error)  
+    }
+    
+  }
+
+
   return (
     <div className="sitenav">
       <Link className="sitenav-link" to="/">
@@ -38,6 +59,7 @@ export default function Sitenav() {
       </Link>
 
       <SearchInput />
+      <button className="btn-logout" type="button" onClick={handleLogout}>Log out</button>
     </div>
   );
 }

@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
 
+import { useAuth } from "../../contexts/AuthContext";
 import "./LoginForm.css";
 
 export default function LoginForm() {
@@ -9,6 +10,28 @@ export default function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
+
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const { login } = useAuth();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+
+    try {
+      setError("")
+      setLoading(true)
+      await login(emailRef.current.value, passwordRef.current.value);
+      
+    } catch {
+      setError("Failed to log in");
+    }
+    setLoading(false);
+  }
 
   const onSubmit = e => {
     e.preventDefault();
@@ -23,7 +46,7 @@ export default function LoginForm() {
   ])
 
   return (
-    <form className="login-form">
+    <form className="login-form" onSubmit={() => navigate('/')}>
       <Link className="login-logo-link" to="/">
         <svg
           className="login-logo"
@@ -120,7 +143,7 @@ export default function LoginForm() {
         />
       </label>
 
-      <button className="login-btn" disabled={disabled} type="submit">
+      <button className="login-btn" disabled={disabled} type="button" onSubmit={onSubmit}>
         Login
       </button>
       <Link className="forgot-password" to="#">
